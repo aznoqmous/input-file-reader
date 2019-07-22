@@ -1,0 +1,14 @@
+{
+  "name": "input-file-reader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/input-file-reader.js",
+  "scripts": {
+    "watch": "webpack --watch --mode development"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^4.35.3"
+  }
+}
