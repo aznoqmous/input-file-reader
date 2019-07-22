@@ -14,10 +14,12 @@ export default class InputFileReader{
   }
 
   bind(){
-      if(!this.config.input) console.warn('no input !')
-      this.config.input.addEventListener('change', (e)=>{
-        if(e.target.files.length) this.handleFileSelect(e.target.files[0])
-      })
+    if(!this.config.input) console.warn('no input !')
+    this.config.input.addEventListener('change', (e)=>{
+      if(e.target.files.length) {
+        this.handleFileSelect(e.target.files[e.target.files.length-1])
+      }
+    })
   }
 
   handleFileSelect(f){
