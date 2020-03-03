@@ -5,6 +5,7 @@ export default class InputFileReader{
       decimals: 0,
 
       // callbacks
+      utf8: false,
       onFileSelect: null,
       onProgress: null,
       onLoaded: null
@@ -41,7 +42,8 @@ export default class InputFileReader{
         if(this.config.onLoaded) this.config.onLoaded(e.srcElement.result)
       }
     }
-    reader.readAsBinaryString(file)
+    if(this.config.utf8) reader.readAsText(file)
+    else reader.readAsBinaryString(file)
   }
 
 
