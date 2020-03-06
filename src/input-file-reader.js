@@ -3,9 +3,10 @@ export default class InputFileReader{
         this.config = Object.assign({
             input: null, // must be declared on class instantiation
             decimals: 0,
+            utf8: false,
 
             // callbacks
-            utf8: false,
+            onChange: null,
             onFileSelect: null,
             onProgress: null,
             onLoaded: null
@@ -17,6 +18,7 @@ export default class InputFileReader{
     bind(){
         if(!this.config.input) console.warn('no input !')
         this.config.input.addEventListener('change', (e)=>{
+            if(this.config.onChange) this.config.onChange(e.target)
             if(e.target.files.length) {
                 this.handleFileSelect(e.target.files[e.target.files.length-1])
             }
@@ -30,7 +32,7 @@ export default class InputFileReader{
 
         this.readFile(f)
     }
-    
+
     readFile(file){
         let reader = new FileReader()
         reader.onprogress = (e)=>{
@@ -49,7 +51,10 @@ export default class InputFileReader{
         else reader.readAsBinaryString(file)
     }
 
-
+    onChange(callback){
+        this.config.onChange = callback
+        return this
+    }
     onFileSelect(callback){
         this.config.onFileSelect = callback
         return this
